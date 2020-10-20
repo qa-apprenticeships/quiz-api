@@ -53,15 +53,7 @@ describe('quiz.nextStageAsync()', function () {
         saveInstance = sinon.stub(db, 'saveInstance');
     });
 
-    describe('when currently awaiting players', function() { 
-        beforeEach(function () {
-            delete process.env.MIN_PLAYERS;
-        })  
-
-        afterEach(function () {
-            delete process.env.MIN_PLAYERS;
-        })  
-
+    describe('when currently awaiting players', function() {
         it('should move to showing first question', async function () {
             await quiz.nextStageAsync('1234');
             expect(saveInstance.calledOnce).to.be.true;
@@ -77,15 +69,8 @@ describe('quiz.nextStageAsync()', function () {
             expect(instance.players.map(p => p.score)).to.have.members([0, 0, 0]);
         });    
 
-        it('should reject request if not enough players', async function () {
+        it('should reject request if no players yet', async function () {
             instanceBefore.players = []; // No players
-            await expect(quiz.nextStageAsync('1234')).to.eventually.be.rejectedWith('Not enough players yet');
-            expect(saveInstance.notCalled).to.be.true;
-        });
-
-        it('should reject request if not enough players, based on MIN_PLAYERS environment variable', async function () {
-            instanceBefore.players = [ instanceBefore.players[0] ]; // One player
-            process.env.MIN_PLAYERS = '2';
             await expect(quiz.nextStageAsync('1234')).to.eventually.be.rejectedWith('Not enough players yet');
             expect(saveInstance.notCalled).to.be.true;
         });
