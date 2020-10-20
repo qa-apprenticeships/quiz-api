@@ -1,10 +1,9 @@
 {
-  "name": "qa-quiz-mvp-api",
+  "name": "quiz-api",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "cpx \"src/**/*\" ./dist/src -C && cpx \"node_modules/**/*\" ./dist/node_modules -C && cpx \"package.json\" ./dist -C",
     "start": "node src/index.js",
     "test": "mocha src/tests --recursive"
   },
