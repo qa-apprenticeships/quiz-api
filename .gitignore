@@ -1,0 +1,15 @@
+# Individual developer preferences go here
+.vscode/
+
+# The contents of this folder can be recreated using npm install
+node_modules/
+
+# .env file could contain secrets, and is specific to each developer
+# so we don't keep it in version control
+.env
+
+# dist folder is generated, so don't store in git
+dist/
+
+# zip file is generated, so don't store in git
+*.zip

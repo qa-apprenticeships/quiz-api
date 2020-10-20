@@ -1,0 +1,6 @@
+POST http://localhost:8001/answer/4320/Sally
+Content-Type: application/json
+
+{
+    "answer": "D"
+}
