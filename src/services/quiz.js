@@ -276,9 +276,7 @@ async function submitAnswerAsync(roomCode, playerName, answer) {
 }
 
 function start(instance) {
-    // MVP - REMOVE?
-    const minPlayers = Number(process.env.MIN_PLAYERS || 1);
-    if (instance.players.length < minPlayers) {
+    if (instance.players.length == 0) {
         throw new InvalidOperationError('Not enough players yet');
     }
     instance.questionNumber = 1;

@@ -70,7 +70,7 @@ describe('quiz.nextStageAsync()', function () {
         });    
 
         it('should reject request if no players yet', async function () {
-            instanceBefore.players = []; // No players
+            instanceBefore.players = [ {name: "Player 1"} ]; // One players
             await expect(quiz.nextStageAsync('1234')).to.eventually.be.rejectedWith('Not enough players yet');
             expect(saveInstance.notCalled).to.be.true;
         });

@@ -98,7 +98,7 @@ app.delete('/room/:roomCode', async (req, res) => {
 // Show version information
 app.get('/version', (req, res) => {
     res.status(200).send({
-        version: 1
+        version: process.env.VERSION || 1
     });
 });
 
@@ -128,5 +128,5 @@ app.use((err, req, res, next) => {
 
 const port = process.env.PORT || 8001;
 app.listen(port, () => {
-    console.log(`qa-quiz-mvp-api listening on port ${port}`);
+    console.log(`quiz-api listening on port ${port}`);
 });
