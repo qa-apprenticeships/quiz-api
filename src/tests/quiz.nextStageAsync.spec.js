@@ -54,7 +54,11 @@ describe('quiz.nextStageAsync()', function () {
     });
 
     describe('when currently awaiting players', function() {
-        it('should move to showing first question', async function () {
+        it('should move to showing first question when enough players', async function () {
+            instanceBefore.players = [
+                { name: 'Player 1' },
+                { name: 'Player 2' }
+            ]; // Two players
             await quiz.nextStageAsync('1234');
             expect(saveInstance.calledOnce).to.be.true;
             const instance = saveInstance.firstCall.args[0];
@@ -70,7 +74,7 @@ describe('quiz.nextStageAsync()', function () {
         });    
 
         it('should reject request if no players yet', async function () {
-            instanceBefore.players = [ {name: "Player 1"} ]; // One players
+            instanceBefore.players = [ ]; // No players yet
             await expect(quiz.nextStageAsync('1234')).to.eventually.be.rejectedWith('Not enough players yet');
             expect(saveInstance.notCalled).to.be.true;
         });
